@@ -18,14 +18,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class LoginUserTest {
     UserClient userClient;
     private User user;
-    final String email = RandomStringUtils.randomAlphabetic(10)+"@random.com";
+    final String email = RandomStringUtils.randomAlphabetic(10) + "@random.com";
     final String password = RandomStringUtils.randomAlphabetic(10);
     String accessToken;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
-        user = new User(email,password,"TestName");
+        user = new User(email, password, "TestName");
         userClient.createUser(user);
     }
 
@@ -38,8 +38,8 @@ public class LoginUserTest {
 
     @Test
     @DisplayName("The user can log in with the correct data")
-    public void userCanLoginWithValidCredentials(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void userCanLoginWithValidCredentials() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
@@ -54,7 +54,7 @@ public class LoginUserTest {
 
         assertThat("Status code is not correct", statusCode, equalTo(SC_OK));
         assertThat("Authorization attempt failed", success, equalTo(true));
-        assertThat("AccessToken is not correct", accessToken,startsWith("Bearer"));
+        assertThat("AccessToken is not correct", accessToken, startsWith("Bearer"));
         assertThat("RefreshToken is not correct", refreshToken, notNullValue());
         assertThat("Email is not correct ", email, equalTo(user.getEmail().toLowerCase(Locale.ROOT)));
         assertThat("Name is not correct", name, equalTo(user.getName()));
@@ -62,8 +62,8 @@ public class LoginUserTest {
 
     @Test
     @DisplayName("The user cannot log in without filling in the required field {password}")
-    public void userCannotLoginWithoutPassword(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void userCannotLoginWithoutPassword() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email(user.getEmail())
                 .build();
         ValidatableResponse loginResponse = userClient.loginUser(credentials);
@@ -79,8 +79,8 @@ public class LoginUserTest {
 
     @Test
     @DisplayName("The user cannot log in without filling in the required field {email}")
-    public void userCannotLoginWithoutEmail(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void userCannotLoginWithoutEmail() {
+        UserCredentials credentials = UserCredentials.builder()
                 .password(user.getPassword())
                 .build();
         ValidatableResponse loginResponse = userClient.loginUser(credentials);
@@ -96,10 +96,10 @@ public class LoginUserTest {
 
     @Test
     @DisplayName("User cannot login with incorrect password")
-    public void userCannotLoginWithIncorrectPassword(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void userCannotLoginWithIncorrectPassword() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email(user.getEmail())
-                .password(user.getPassword()+"5")
+                .password(user.getPassword() + "5")
                 .build();
         ValidatableResponse loginResponse = userClient.loginUser(credentials);
 
@@ -114,8 +114,8 @@ public class LoginUserTest {
 
     @Test
     @DisplayName("User cannot login with incorrect email")
-    public void userCannotLoginWithIncorrectEmail(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void userCannotLoginWithIncorrectEmail() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email("H" + user.getEmail())
                 .password(user.getPassword())
                 .build();

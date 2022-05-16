@@ -16,7 +16,7 @@ public class User {
     public String name;
 
     @Step("Create users with random credentials")
-    public static User getRandomUser(){
+    public static User getRandomUser() {
         Faker faker = new Faker(new Locale("en"));
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
@@ -24,6 +24,6 @@ public class User {
         Allure.addAttachment("Login", email);
         Allure.addAttachment("Password", password);
         Allure.addAttachment("Name", name);
-        return new User(email,password,name);
+        return new User(email, password, name);
     }
 }

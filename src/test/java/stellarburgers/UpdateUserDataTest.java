@@ -17,7 +17,7 @@ public class UpdateUserDataTest {
     ValidatableResponse loginResponse;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
         user = User.getRandomUser();
         userClient.createUser(user);
@@ -33,15 +33,15 @@ public class UpdateUserDataTest {
 
     @Test
     @DisplayName("Changing user data with authorization")
-    public void updateAuthorizedUserDataTest(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void updateAuthorizedUserDataTest() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
         loginResponse = userClient.loginUser(credentials);
         accessToken = loginResponse.extract().path("accessToken");
         User newUser = User.getRandomUser();
-        ValidatableResponse updateResponse = userClient.updateUserInfo(accessToken,newUser);
+        ValidatableResponse updateResponse = userClient.updateUserInfo(accessToken, newUser);
 
         int statusCode = updateResponse.extract().statusCode();
         boolean success = updateResponse.extract().path("success");
@@ -56,10 +56,10 @@ public class UpdateUserDataTest {
 
     @Test
     @DisplayName("Changing user data without authorization")
-    public void updateUnauthorizedUserDataTest(){
+    public void updateUnauthorizedUserDataTest() {
         accessToken = "";
         User newUser = User.getRandomUser();
-        ValidatableResponse updateResponse = userClient.updateUserInfo(accessToken,newUser);
+        ValidatableResponse updateResponse = userClient.updateUserInfo(accessToken, newUser);
 
         int statusCode = updateResponse.extract().statusCode();
         boolean success = updateResponse.extract().path("success");
@@ -72,8 +72,8 @@ public class UpdateUserDataTest {
 
     @Test
     @DisplayName("Changing user data with authorization by specifying an already used email")
-    public void updateAuthorizedUserDataWithExistingEmailTest(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void updateAuthorizedUserDataWithExistingEmailTest() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
@@ -84,7 +84,7 @@ public class UpdateUserDataTest {
                 .password(user.getPassword())
                 .name(user.getName())
                 .build();
-        ValidatableResponse updateResponse = userClient.updateUserInfo(accessToken,newUser);
+        ValidatableResponse updateResponse = userClient.updateUserInfo(accessToken, newUser);
 
         int statusCode = updateResponse.extract().statusCode();
         boolean success = updateResponse.extract().path("success");

@@ -20,7 +20,7 @@ public class GetOrdersListTest {
     String accessToken;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         userClient = new UserClient();
         user = User.getRandomUser();
         userClient.createUser(user);
@@ -37,8 +37,8 @@ public class GetOrdersListTest {
 
     @Test
     @DisplayName("Getting a list of orders by an authorized user")
-    public void getOrderListForAuthorizedUser(){
-        UserCredentials credentials= UserCredentials.builder()
+    public void getOrderListForAuthorizedUser() {
+        UserCredentials credentials = UserCredentials.builder()
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
@@ -58,7 +58,7 @@ public class GetOrdersListTest {
 
     @Test
     @DisplayName("Getting a list of orders by an unauthorized user")
-    public void getOrderListForUnauthorizedUser(){
+    public void getOrderListForUnauthorizedUser() {
         Response orderResponse = orderClient.getUsersOrdersWithoutAuth();
 
         int statusCode = orderResponse.statusCode();

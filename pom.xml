@@ -77,32 +77,38 @@
     </build>
     <dependencies>
 
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-        <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>6.4.0</version>
+            <scope>test</scope>
+        </dependency>
 
-    <dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-junit4</artifactId>
-        <version>${allure.version}</version>
-    </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
-    <dependency>
-        <!-- модуль взаимодействия Allure и RestAssured -->
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-rest-assured</artifactId>
-        <version>${allure.version}</version>
-    </dependency>
+        <dependency>
+            <!-- модуль взаимодействия Allure и RestAssured -->
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
 
-    <dependency>
-        <groupId>io.rest-assured</groupId>
-        <artifactId>rest-assured</artifactId>
-        <version>5.0.1</version>
-        <scope>compile</scope>
-    </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.0.1</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
